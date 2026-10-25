@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex" />
+  <title>주소 검색</title>
+  <link rel="icon" href="icon.png" />
+  <style>
+    :root { --bg: #ffffff; --text: #1d1b20; --muted: #555; --accent: #6750a4; --accent-text: #fff; --pick: #f1edf7; }
+    @media (prefers-color-scheme: dark) { :root { --bg: #141218; --text: #e6e0e9; --muted: #b8b2bd; --accent: #d0bcff; --accent-text: #381e72; --pick: #2b2930; } }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; height: 100%; background: var(--bg); color: var(--text); font-family: -apple-system, 'Apple SD Gothic Neo', 'Malgun Gothic', 'Noto Sans KR', sans-serif; }
+    #wrap { height: 100%; }
+    #picked { display: none; padding: 20px 16px; }
+    #picked p { font-size: 18px; line-height: 1.6; background: var(--pick); border-radius: 12px; padding: 14px 16px; margin: 0 0 16px; }
+    button { display: block; width: 100%; padding: 18px; border: 0; border-radius: 14px; background: var(--accent); color: var(--accent-text); font-size: 20px; font-weight: 700; margin-bottom: 10px; }
+    button.secondary { background: transparent; color: var(--accent); border: 2px solid var(--accent); }
+    .muted { color: var(--muted); font-size: 15px; }
+  </style>
+</head>
+<body>
+  <!-- 체험관관리프로그램 휴대폰 앱의 [주소 검색](수정 사항 14번). 카카오 우편번호 서비스로 찾고, [이 주소 넣기]를 누르면 앱으로 돌아간다. -->
+  <div id="wrap"></div>
+  <div id="picked">
+    <p id="address"></p>
+    <button id="use">이 주소 넣기</button>
+    <button id="again" class="secondary">다시 찾기</button>
+    <div class="muted">동·호수 같은 상세 주소는 앱에서 이어서 입력합니다.</div>
+  </div>
+  <script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+  <script>
+    // 앱으로만 돌려보낸다(다른 주소로 보내는 데 쓰이지 않게).
+    var redirect = new URLSearchParams(location.search).get('redirect') || '';
+    if (!/^expcrmserver:\/\//.test(redirect)) redirect = 'expcrmserver://address';
+    var wrap = document.getElementById('wrap');
+    var picked = document.getElementById('picked');
+    var chosen = '';
+    function search() {
+      picked.style.display = 'none';
+      wrap.style.display = 'block';
+      wrap.innerHTML = '';
+      new daum.Postcode({
+        width: '100%',
+        height: '100%',
+        oncomplete: function (data) {
+          var road = data.roadAddress || data.jibunAddress || data.address;
+          var extra = data.buildingName && data.apartment === 'Y' ? ' (' + data.buildingName + ')' : '';
+          chosen = road + extra;
+          document.getElementById('address').textContent = chosen;
+          wrap.style.display = 'none';
+          picked.style.display = 'block';
+        },
+      }).embed(wrap);
+    }
+    document.getElementById('use').onclick = function () {
+      location.href = redirect + (redirect.indexOf('?') < 0 ? '?' : '&') + 'address=' + encodeURIComponent(chosen);
+    };
+    document.getElementById('again').onclick = search;
+    search();
+  </script>
+</body>
+</html>
