@@ -1,0 +1,14 @@
+# 체험관관리프로그램 설치 안내 페이지
+
+- 페이지: https://tichang20-lab.github.io/expcrm-app/
+- 설치 파일(항상 최신): https://github.com/tichang20-lab/expcrm-app/releases/latest/download/expcrm.apk
+
+원본은 앱 프로젝트(experience-center-crm, v2-server 브랜치)의 `landing/` 폴더에 있고, 이 저장소에는 그 내용만 올린다.
+
+## 새 APK를 올리는 법
+
+1. EAS로 빌드한다: `npx eas-cli@latest build -p android --profile preview`
+2. 빌드 화면에서 APK를 받아 파일 이름을 `expcrm.apk`로 바꾼다.
+3. 새 릴리스를 만든다: `gh release create v2.0-build3 expcrm.apk --repo tichang20-lab/expcrm-app --title "v2.0 (빌드 3)" --latest`
+
+페이지의 버튼은 항상 "가장 최근 릴리스"의 `expcrm.apk`를 받으므로, 페이지나 이미 보낸 링크는 바꿀 필요가 없다.
