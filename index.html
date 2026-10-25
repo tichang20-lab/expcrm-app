@@ -4,11 +4,11 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>체험관관리프로그램 설치</title>
-  <meta name="description" content="체험관 회원·판매 관리 앱(안드로이드). 버튼을 눌러 설치하세요." />
+  <meta name="description" content="체험관 회원·판매 관리 프로그램. 안드로이드 휴대폰 설치 / PC에서 바로 쓰기" />
   <!-- 카카오톡·문자로 보낼 때 보이는 미리보기(썸네일 카드) -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="체험관관리프로그램 설치" />
-  <meta property="og:description" content="체험관 회원·판매 관리 앱(안드로이드). 눌러서 설치하세요." />
+  <meta property="og:description" content="체험관 회원·판매 관리 프로그램. 안드로이드 휴대폰 설치 / PC에서 바로 쓰기" />
   <meta property="og:image" content="https://tichang20-lab.github.io/expcrm-app/icon.png" />
   <meta property="og:image:width" content="1024" />
   <meta property="og:image:height" content="1024" />
@@ -54,18 +54,19 @@
     .icon { width: 112px; height: 112px; border-radius: 26px; box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15); }
     h1 { font-size: 28px; margin: 16px 0 4px; }
     .sub { color: var(--muted); font-size: 18px; margin: 0; }
-    .install {
+    .choose { display: grid; gap: 12px; margin: 28px 0 12px; }
+    .choice {
       display: block;
-      margin: 28px 0 12px;
-      padding: 20px;
+      padding: 18px 20px;
       border-radius: 16px;
       background: var(--accent);
       color: var(--accent-text);
       text-align: center;
-      font-size: 22px;
-      font-weight: 700;
       text-decoration: none;
     }
+    .choice.pcbtn { background: var(--card); color: var(--accent); border: 2px solid var(--accent); }
+    .choice .big { display: block; font-size: 22px; font-weight: 700; }
+    .choice .small { display: block; font-size: 15px; margin-top: 2px; }
     .size { text-align: center; color: var(--muted); font-size: 15px; margin: 0 0 24px; }
     .card { background: var(--card); border-radius: 16px; padding: 20px; margin-top: 16px; }
     .card h2 { font-size: 20px; margin: 0 0 12px; }
@@ -75,7 +76,10 @@
     .pc { display: none; text-align: center; }
     #qr { display: inline-block; background: #fff; padding: 12px; border-radius: 12px; margin-top: 8px; }
     footer { text-align: center; color: var(--muted); font-size: 13px; margin-top: 32px; }
-    @media (min-width: 720px) { .pc { display: block; } }
+    @media (min-width: 720px) {
+      .pc { display: block; }
+      .choose { grid-template-columns: 1fr 1fr; }
+    }
   </style>
 </head>
 <body>
@@ -83,16 +87,23 @@
     <div class="head">
       <img class="icon" src="icon.png" alt="체험관관리프로그램 아이콘" />
       <h1>체험관관리프로그램</h1>
-      <p class="sub">체험관 회원·판매 관리 앱(안드로이드)</p>
+      <p class="sub">체험관 회원·판매 관리 프로그램</p>
     </div>
 
-    <a class="install" href="https://github.com/tichang20-lab/expcrm-app/releases/latest/download/expcrm.apk">앱 설치 파일 받기</a>
-    <p class="size">안드로이드 휴대폰 전용 · 약 110MB(와이파이에서 받기를 권장)</p>
+    <div class="choose">
+      <a class="choice" href="https://github.com/tichang20-lab/expcrm-app/releases/latest/download/expcrm.apk">
+        <span class="big">안드로이드 휴대폰</span><span class="small">앱 설치 파일 받기 · 약 60MB</span>
+      </a>
+      <a class="choice pcbtn" href="web/">
+        <span class="big">PC (윈도우·맥)</span><span class="small">설치 없이 바로 쓰기</span>
+      </a>
+    </div>
+    <p class="size">아이폰은 아직 지원하지 않습니다. 휴대폰과 PC는 같은 계정으로 로그인하면 같은 자료가 보입니다.</p>
 
     <section class="card">
-      <h2>설치 방법</h2>
+      <h2>휴대폰 설치 방법</h2>
       <ol>
-        <li>위의 <b>[앱 설치 파일 받기]</b>를 누릅니다.</li>
+        <li>위의 <b>[안드로이드 휴대폰]</b>을 누릅니다.</li>
         <li>다운로드가 끝나면 알림이나 다운로드 폴더에서 파일을 눌러 <b>설치</b>합니다.</li>
         <li>"안전하지 않은 앱" 같은 경고가 나와도 설정에 들어가지 말고, <b>세부정보 더보기 → 무시하고 설치</b>를 누릅니다.</li>
         <li>앱을 열고 <b>회원가입</b>합니다.
@@ -102,8 +113,16 @@
 
     <div class="note">
       카카오톡에서 눌렀는데 다운로드가 안 되면, 오른쪽 위 메뉴(⋮)에서 <b>"다른 브라우저로 열기"</b>를 누르세요.
-      아이폰은 아직 지원하지 않습니다.
     </div>
+
+    <section class="card">
+      <h2>PC에서 쓰기</h2>
+      <p style="margin: 0; font-size: 17px">
+        위의 <b>[PC (윈도우·맥)]</b>를 누르고 휴대폰과 같은 이메일·비밀번호로 로그인합니다. 설치할 것은 없습니다.
+        주소를 즐겨찾기에 넣어 두면 편합니다. <b>30분 동안 쓰지 않으면 자동으로 로그아웃</b>되고,
+        여러 사람이 쓰는 PC에서는 다 쓴 뒤 설정 → 로그아웃을 눌러 주세요.
+      </p>
+    </section>
 
     <section class="card">
       <h2>이미 설치했다면</h2>
@@ -114,7 +133,7 @@
     </section>
 
     <section class="card pc">
-      <h2>휴대폰 카메라로 찍어서 설치</h2>
+      <h2>휴대폰에 설치하려면 카메라로 찍으세요</h2>
       <div id="qr"></div>
     </section>
 
