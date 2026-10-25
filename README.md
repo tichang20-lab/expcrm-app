@@ -19,3 +19,8 @@
 - 앱 코드를 고친 뒤 앱 프로젝트에서 `powershell -ExecutionPolicy Bypass -File scripts/deploy-web.ps1` 실행.
   웹으로 빌드해 이 저장소의 `web/`을 바꾸고, `404.html`(하위 주소 새로 고침용)과 안내 페이지도 함께 올린다.
 - 휴대폰 APK와 같은 코드에서 올려야 화면이 같다. 새 APK를 릴리스할 때 함께 실행하는 것을 권장.
+
+## 새 버전 안내(앱 안 알림)
+
+`scripts/release-android.ps1 -ApkUrl <EAS APK 주소> -Build <빌드 번호> -Notes "바뀐 점"`을 쓰면
+릴리스를 만들고 서버 설정 `android_latest_build`도 올려서, 그보다 낮은 빌드의 앱에 "새 버전이 있습니다"가 뜬다(빌드 6부터).

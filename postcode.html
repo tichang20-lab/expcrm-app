@@ -20,7 +20,8 @@
   </style>
 </head>
 <body>
-  <!-- 체험관관리프로그램 휴대폰 앱의 [주소 검색](수정 사항 14번). 카카오 우편번호 서비스로 찾고, [이 주소 넣기]를 누르면 앱으로 돌아간다. -->
+  <!-- 체험관관리프로그램 휴대폰 앱의 [주소 검색](수정 사항 14번). 카카오 우편번호 서비스로 찾는다.
+       빌드 7부터는 앱 안 화면(WebView)에서 열려 고른 주소를 바로 앱으로 보낸다. 빌드 6은 [이 주소 넣기]로 앱 주소를 연다. -->
   <div id="wrap"></div>
   <div id="picked">
     <p id="address"></p>
@@ -47,6 +48,11 @@
           var road = data.roadAddress || data.jibunAddress || data.address;
           var extra = data.buildingName && data.apartment === 'Y' ? ' (' + data.buildingName + ')' : '';
           chosen = road + extra;
+          // 휴대폰 앱 안 화면(빌드 7~)에서 열렸으면 고른 주소를 바로 앱으로 보낸다
+          if (window.ReactNativeWebView) {
+            window.ReactNativeWebView.postMessage(chosen);
+            return;
+          }
           document.getElementById('address').textContent = chosen;
           wrap.style.display = 'none';
           picked.style.display = 'block';
