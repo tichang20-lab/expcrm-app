@@ -72,6 +72,8 @@
     .card h2 { font-size: 20px; margin: 0 0 12px; }
     ol { margin: 0; padding-left: 22px; font-size: 18px; }
     ol li { margin-bottom: 10px; }
+    ol.steps { list-style: lower-alpha; margin: 8px 0; padding-left: 20px; font-size: 17px; }
+    ol.steps li { margin-bottom: 6px; }
     .note { background: var(--warn-bg); border-radius: 12px; padding: 14px 16px; font-size: 16px; margin-top: 16px; }
     .pc { display: none; text-align: center; }
     #qr { display: inline-block; background: #fff; padding: 12px; border-radius: 12px; margin-top: 8px; }
@@ -104,8 +106,16 @@
       <h2>휴대폰 설치 방법</h2>
       <ol>
         <li>위의 <b>[안드로이드 휴대폰]</b>을 누릅니다.</li>
-        <li>다운로드가 끝나면 알림이나 다운로드 폴더에서 파일을 눌러 <b>설치</b>합니다.</li>
-        <li>"안전하지 않은 앱" 같은 경고가 나와도 설정에 들어가지 말고, <b>세부정보 더보기 → 무시하고 설치</b>를 누릅니다.</li>
+        <li>다운로드가 끝나면 알림이나 다운로드 폴더에서 <b>expcrm.apk</b>를 누릅니다.
+          (여러 개 있으면 가장 위의 최신 파일)</li>
+        <li>경고 창이 차례로 나옵니다. 아래 순서대로 누르세요.
+          <ol class="steps">
+            <li>"앱 설치가 권장되지 않음" → <b>무시하고 설치</b></li>
+            <li>"기기 보호를 위해 앱 차단됨" → 파란 [확인]은 누르지 말고 <b>세부정보 더보기</b>
+              → 아래에 생긴 <b>무시하고 설치하기</b></li>
+            <li>"보안 확인을 위해 앱을 전송하시겠습니까?" → <b>전송하지 않음</b></li>
+          </ol>
+          휴대폰 기종에 따라 일부 창은 나오지 않을 수 있습니다.</li>
         <li>앱을 열고 <b>회원가입</b>합니다.
           원장은 "체험관 새로 만들기", 직원은 원장에게 받은 <b>6자리 초대 코드</b>를 입력합니다.</li>
       </ol>
